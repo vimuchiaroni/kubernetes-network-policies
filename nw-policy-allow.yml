@@ -1,0 +1,14 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  namespace: apache
+  name: http-allow-from-default-to-apache-namespace
+spec:
+  podSelector:
+    matchLabels:
+      app: http
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          app: default
